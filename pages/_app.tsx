@@ -1,23 +1,22 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useState } from 'react';
+import { ThemeProvider } from 'next-themes';
 
 import '../styles/globals.css';
 import { Header, Footer } from '../components';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [darkMode, setDarkMode] = useState(false);
   return (
-    <div>
+    <ThemeProvider attribute="class">
       <Head>
         <title>Jianjian Liao - React Developer, Cyclist, Sailor.</title>
       </Head>
-      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Header />
       <main>
         <Component {...pageProps} />
       </main>
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 }
 export default MyApp;
