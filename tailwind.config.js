@@ -15,8 +15,8 @@ module.exports = {
         cyan: colors.cyan,
         coolGray: colors.coolGray
       },
-      height: {
-        '60vh': '60vh'
+      minHeight: {
+        almost: 'calc(100vh - 8rem)'
       }
     }
   },

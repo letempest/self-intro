@@ -57,8 +57,9 @@ const navigation: Attrs[] = [
 
 function Footer() {
   return (
-    <footer>
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-center lg:px-8">
+    <footer className="pt-12 pb-10 px-4 sm:px-6 lg:px-8">
+      <hr className="w-full max-w-3xl mx-auto py-3 border-1 border-gray-300 dark:border-gray-500" />
+      <div className="max-w-7xl mx-auto md:flex md:items-center md:justify-center">
         <div className="hidden md:flex justify-center space-x-6 md:order-2">
           {navigation.map(item => (
             <a
@@ -73,9 +74,9 @@ function Footer() {
             </a>
           ))}
         </div>
-        <div className="mt-8 md:mt-0 md:order-1">
+        <div className="md:order-1">
           <p className="text-center text-base text-gray-400 px-6">
-            Jianjian LIAO &copy; 2021, Built with{' '}
+            Jianjian Liao &copy; 2021, Built with{' '}
             <a
               href="http://nextjs.org"
               target="_blank"

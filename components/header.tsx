@@ -1,26 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 
 const Header = () => {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+  const router = useRouter();
 
   useEffect(() => setMounted(true), []);
 
+  const routes = [
+    { path: '/', text: 'Home' },
+    { path: '/techstack', text: 'Tech Stack' },
+    { path: '/about', text: 'About' }
+  ];
+
   return (
-    <div className="w-full bg-emerald-700 dark:bg-coolGray-900">
+    <div className="sticky-nav w-full bg-emerald-700 bg-opacity-90 dark:bg-coolGray-900 shadow-lg">
       <nav className="flex items-center justify-between max-w-4xl mx-auto my-0 px-6 md:px-8 py-2 md:py-4 md:text-xl text-gray-100 dark:text-gray-200">
         <div className="flex items-center space-x-4 md:space-x-9">
-          <Link href="/">
-            <a className="hover:underline hover:text-amber-600">Home</a>
-          </Link>
-          <Link href="/techstack">
-            <a className="hover:underline hover:text-amber-600">Tech Stack</a>
-          </Link>
-          <Link href="/about">
-            <a className="hover:underline hover:text-amber-600">About</a>
-          </Link>
+          {routes.map(route => {
+            const isActive = route.path === router.pathname;
+            const classList = ['hover:underline', 'hover:text-amber-600'];
+
+            if (mounted && isActive) {
+              resolvedTheme === 'light'
+                ? classList.push('text-lime-400')
+                : classList.push('dark:text-purple-500');
+            }
+            const className = classList.join(' ');
+
+            return (
+              <Link href={route.path} key={route.path}>
+                <a className={className}>{route.text}</a>
+              </Link>
+            );
+          })}
         </div>
         {mounted && (
           <button

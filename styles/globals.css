@@ -16,3 +16,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.sticky-nav {
+  position: sticky;
+  z-index: 50;
+  top: 0;
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: background-color 0.3s ease-in-out;
+}
