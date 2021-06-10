@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Jianjian Liao - React Developer, Cyclist, Sailor.</title>
       </Head>
       <Header />
-      <main className="flex flex-col justify-between mx-auto pt-8 md:pt-12 max-w-4xl min-h-almost">
+      <main className="flex flex-col justify-between mx-auto pt-10 md:pt-16 lg:pt-20 max-w-4xl min-h-almost">
         <Component {...pageProps} />
         <Footer />
       </main>
