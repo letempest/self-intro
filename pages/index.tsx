@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
-import { useVaryingName } from '../hooks';
+
+import { VaryingName } from '../components';
 
 interface ListProps {
   timespan: string;
@@ -9,6 +10,8 @@ interface ListProps {
   imgSrc: string;
   imgAlt: string;
   odd?: boolean;
+  objectPosition?: string;
+  className?: string;
 }
 
 // not reusable at all, no need to refactor into its own component
@@ -18,133 +21,120 @@ const ListComponent = ({
   desc,
   imgSrc,
   imgAlt,
-  odd
+  odd,
+  objectPosition = '50% 50%',
+  className = 'rounded-full'
 }: ListProps) => {
   const sidedClassName =
-    'mt-10 mb-16 lg:mt-0 bg-white dark:bg-gray-800 lg:max-w-[240px] z-10' +
-    (odd ? ' lg:ml-[450px] lg:text-left' : ' lg:mr-[450px] lg:text-right');
+    'mt-44 lg:mt-0 mb-12 lg:mb-0 bg-white dark:bg-gray-800 lg:max-w-[300px] z-10' +
+    (!odd
+      ? ' lg:ml-[500px] xl:ml-[520px] lg:text-left'
+      : ' lg:mr-[500px] xl:mr-[520px] lg:text-right');
+
   return (
-    <li className="flex flex-col lg:flex-row items-center lg:items-start max-w-[400px] lg:max-w-none">
-      <div className="lg:absolute lg:left-1/2 lg:ml-[-70px] lg:order-last z-20">
-        {/* lg:ml-[-vpx], where v should be half of image width below for image to center */}
+    <li className="flex flex-col lg:flex-row items-center lg:items-start max-w-[400px] lg:max-w-none lg:min-h-[220px]">
+      <div className="absolute left-1/2 ml-[-64px] w-32 h-32 lg:order-last z-20">
+        {/* lg:ml-[-vpx], where v should be [w-32] * 4 / 2, to ensure the image is centered */}
         <Image
           src={imgSrc}
-          width="140"
-          height="140"
+          layout="fill"
+          objectFit="cover"
+          objectPosition={objectPosition}
           alt={imgAlt}
           aria-hidden="true"
-          className="rounded-full"
+          className={className}
         />
       </div>
       <div className={sidedClassName}>
         <h4 className="mt-3 font-bold">{timespan}</h4>
-        <h4 className="mt-3 font-bold">{role}</h4>
-        <p className="my-4">{desc}</p>
+        <h4 className="mt-1 font-bold">{role}</h4>
+        <p className="my-3" dangerouslySetInnerHTML={{ __html: desc }} />
       </div>
     </li>
   );
 };
 
 export default function Home() {
-  const [myname, setMyname] = useState('Liao Jianjian');
-  const { timeoutIds, getIntervalId } = useVaryingName(
-    'Liao Jianjian',
-    '廖 健 健',
-    setMyname
-  );
-
-  useEffect(() => {
-    const intervalId = getIntervalId();
-
-    return () => {
-      timeoutIds.forEach(id => clearTimeout(id));
-      clearInterval(intervalId);
-    };
-  }, []);
-
   const listComArr: ListProps[] = [
     {
       timespan: '2010 - 2014',
-      role: 'U grad',
-      desc: 'I graduated with a master of science in computer science. Lots of this knowledge can be applied for more complex problems in client-server architectures.',
-      imgSrc: '/hnu.jpg',
+      role: 'Undergraduate',
+      desc: "I graduated with a bachalor's degree in <em>Mechanical Design, Manufacture & Automation</em>.",
+      imgSrc: '/static/images/home/hnu.jpg',
       imgAlt: 'undergraduate - hunan university'
     },
     {
-      timespan: '2010 - 2014',
-      role: 'U grad',
-      desc: 'I graduated with a master of science in computer science. Lots of this knowledge can be applied for more complex problems in client-server architectures.',
-      imgSrc: '/hnu.jpg',
-      imgAlt: 'undergraduate - hunan university'
+      timespan: '2014 - 2016',
+      role: 'Vehicle Engineer in Zhejiang',
+      desc: 'Took charge of various vehicle comonents performance test, e.g. physical / functional / durability test of brake system / chassis parts / rear-view mirrors&nbsp;etc.',
+      imgSrc: '/static/images/home/machine.jpg',
+      imgAlt: 'First job as a vehicle testing engineer',
+      objectPosition: 'left bottom'
     },
     {
-      timespan: '2010 - 2014',
-      role: 'U grad',
-      desc: 'I graduated with a master of science in computer science. Lots of this knowledge can be applied for more complex problems in client-server architectures.',
-      imgSrc: '/hnu.jpg',
-      imgAlt: 'undergraduate - hunan university'
+      timespan: '2016 - 2017',
+      role: 'Postgraduate',
+      desc: 'Obtained my MSc degree in <em>Mechanical Engineering</em>.',
+      imgSrc: '/static/images/home/HKUST.jpg',
+      imgAlt: 'postgraduate study at HKUST',
+      objectPosition: 'left bottom'
     },
     {
-      timespan: '2010 - 2014',
-      role: 'U grad',
-      desc: 'I graduated with a master of science in computer science. Lots of this knowledge can be applied for more complex problems in client-server architectures.',
-      imgSrc: '/hnu.jpg',
-      imgAlt: 'undergraduate - hunan university'
+      timespan: '2017 - 2019',
+      role: 'Graduate Engineer in Hong Kong',
+      desc: "Worked for Dynasafe Demil Systems AB's distributor, made presentation for demilitarization/off-gas treament solution; made preparation for industrial exhibitions; provided quotation and followed up maintenance demand.",
+      imgSrc: '/static/images/home/demil.jpg',
+      imgAlt: 'graduate engineer at Hong Kong'
     },
     {
-      timespan: '2010 - 2014',
-      role: 'U grad',
-      desc: 'I graduated with a master of science in computer science. Lots of this knowledge can be applied for more complex problems in client-server architectures.',
-      imgSrc: '/hnu.jpg',
-      imgAlt: 'undergraduate - hunan university'
+      timespan: '2020 till now',
+      role: 'Learning web development',
+      desc: 'Been continuously learning about modern fullstack development workflow, got my hands dirty by writing React, Node.js and GraphQL&nbsp;code.',
+      imgSrc: '/static/images/home/coding.jpg',
+      imgAlt: 'next web developer to change the world'
     }
   ];
 
   return (
-    <div className="mx-8 md:mx-12 lg:mx-6">
+    <div className="mx-6 md:mx-12 lg:mx-6 text-sm md:text-base">
       <h1 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
         <span>Hi, I'm</span>
         <span>&ensp;</span>
-        <span className="inline-block tracking-wide">{myname}</span>
+        <VaryingName name1="Liao Jianjian" name2="廖 健 健" />
       </h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-        doloribus consequatur ab rem, neque nesciunt repellendus? Aperiam
-        dolores sit voluptatibus?
+      <p className="py-2">
+        I'm a developer, cylist and sailor. You just found a slice of the
+        internet which prove my existence - keep on reading to reveal my career
+        history or{' '}
+        <Link href="/about">
+          <a className="underline font-medium text-blue-400">
+            learn&nbsp;more about me.
+          </a>
+        </Link>
       </p>
       <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam,
-        dolorem numquam ipsum explicabo quaerat assumenda non sed quia
-        laboriosam suscipit! Autem labore nam corrupti id, nulla minima quas
-        laboriosam quasi eautem nobis aliquid sit rem, suscipit architecto
-        similique dolores molestias quis magnam, maxime veniam eligendi dicta!
-        Impedit vel soluta quo laborum magni distinctio error aspernatur at
-        culpa? Modi inventore reprehenderit ullam maiores? Provident aut sequi,
-        dolore non dolorum, iure doloremque dolor aliquam pariatur rerum
-        voluptas exercitationem cumque omnis at!
+        I have worked in mechanical industry since graduation for a few years,
+        but decided to switch my career into a developer role to actually create
+        something awesome. I'm curious about trending technologies and also a
+        quick learner, which combining together means I am capable of working
+        with React,&nbsp;GraphQL&nbsp;and&nbsp;TypeScript; possess sufficient
+        knowledge of Docker & Kubernetes; and last but not least, I'm a fan of
+        microservices architecture.
       </p>
       <hr className="border-t-1 border-coolGray-400 my-8" />
       <div className="flex flex-col items-center text-center pb-12 md:pb-20 px-4">
         <div className="pb-12">
-          <h2>VITA</h2>
-          <h3 className="uppercase">my professional story.</h3>
+          <h2 className="text-lg md:text-xl lg:text-2xl">VITA</h2>
+          <h3 className="mt-2 text-sm uppercase">my professional story.</h3>
         </div>
         <div className="relative">
-          <ul className="relative">
+          <ul className="flex flex-col relative">
             <li
               className="absolute left-[49.85%] top-0 bottom-0 w-0.5 bg-coolGray-300"
               aria-hidden="true"
             ></li>
-            {listComArr.map(({ timespan, role, desc, imgSrc, imgAlt }, idx) => (
-              <ListComponent
-                timespan={timespan}
-                role={role}
-                desc={desc}
-                imgSrc={imgSrc}
-                imgAlt={imgAlt}
-                odd={idx % 2 !== 0}
-                key={idx}
-              />
+            {listComArr.map((props, idx) => (
+              <ListComponent {...props} odd={idx % 2 !== 0} key={idx} />
             ))}
             <li className="relative pt-4 font-bold bg-white dark:bg-gray-800">
               <h4>Be part of my story.</h4>
