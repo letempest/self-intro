@@ -103,7 +103,7 @@ export default function Home() {
         <VaryingName name1="Liao Jianjian" name2="廖 健 健" />
       </h1>
       <p className="py-2 lg:text-lg">
-        I'm a developer, cylist and sailor. You just found a slice of the
+        I'm a developer, cyclist and sailor. You just found a slice of the
         internet which prove my existence - keep on reading to reveal my career
         history or{' '}
         <Link href="/about">
