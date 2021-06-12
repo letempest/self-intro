@@ -102,7 +102,7 @@ export default function Home() {
         <span>&ensp;</span>
         <VaryingName name1="Liao Jianjian" name2="廖 健 健" />
       </h1>
-      <p className="py-2">
+      <p className="py-2 lg:text-lg">
         I'm a developer, cylist and sailor. You just found a slice of the
         internet which prove my existence - keep on reading to reveal my career
         history or{' '}
@@ -112,7 +112,7 @@ export default function Home() {
           </a>
         </Link>
       </p>
-      <p>
+      <p className="lg:text-lg">
         I have worked in mechanical industry since graduation for a few years,
         but decided to switch my career into a developer role to actually create
         something awesome. I'm curious about trending technologies and also a
