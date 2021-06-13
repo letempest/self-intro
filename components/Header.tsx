@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
@@ -18,13 +18,6 @@ const Header = () => {
 
   return (
     <div className="sticky-nav w-full bg-emerald-700 bg-opacity-90 dark:bg-coolGray-900 shadow-lg">
-      {/* <div
-        className="w-full h-2 dark:filter dark:grayscale-[0.4]"
-        style={{
-          background:
-            'linear-gradient(90deg, rgb(100, 91, 83) 0%, rgb(235, 82, 82) 18.23%, rgb(247, 143, 47) 34.37%, rgb(244, 193, 81) 48.96%, rgb(82, 187, 118) 66.15%, rgb(38, 165, 215) 82.29%, rgb(224, 105, 183) 100%)'
-        }}
-      ></div> */}
       <nav className="flex items-center justify-between max-w-4xl mx-auto my-0 px-6 md:px-8 py-2 md:py-4 md:text-xl text-gray-100 dark:text-gray-200">
         <div className="flex items-center space-x-4 md:space-x-9">
           {routes.map(route => {

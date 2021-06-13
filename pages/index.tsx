@@ -34,7 +34,7 @@ const ListComponent = ({
   return (
     <li className="flex flex-col lg:flex-row items-center lg:items-start max-w-[400px] lg:max-w-none lg:min-h-[220px]">
       <div className="absolute left-1/2 ml-[-64px] w-32 h-32 lg:order-last z-20">
-        {/* lg:ml-[-vpx], where v should be [w-32] * 4 / 2, to ensure the image is centered */}
+        {/* ml-[-vpx], where v should be [w-32] * 4 / 2, to ensure the image is centered */}
         <Image
           src={imgSrc}
           layout="fill"
