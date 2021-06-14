@@ -100,7 +100,7 @@ export default function Home() {
       <h1 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
         <span>Hi, I'm</span>
         <span>&ensp;</span>
-        <VaryingName name1="Liao Jianjian" name2="廖 健 健" />
+        <VaryingName name1="Liao Jianjian" name2="廖健健" />
       </h1>
       <p className="py-2 lg:text-lg">
         I'm a developer, cyclist and sailor. You just found a slice of the

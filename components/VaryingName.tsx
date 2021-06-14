@@ -8,15 +8,10 @@ interface Props {
 
 export function VaryingName({ name1, name2 }: Props) {
   const [myname, setMyname] = useState(name1);
-  const { timeoutIds, getIntervalId } = useVaryingName(name1, name2, setMyname);
+  const startLoop = useVaryingName(name1, name2, setMyname);
 
   useEffect(() => {
-    const intervalId = getIntervalId();
-
-    return () => {
-      timeoutIds.forEach(id => clearTimeout(id));
-      clearInterval(intervalId);
-    };
+    startLoop();
   }, []);
 
   return <span className="inline-block tracking-wide">{myname}</span>;
