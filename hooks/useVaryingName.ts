@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export function useVaryingName(
   name1: string,
   name2: string,
-  setName: (prev: string) => void
+  setName: (_prev: string) => void
 ) {
   const [_myname, setMyname] = useState(name1);
+  const timeoutIdsRef = useRef<number[]>([]);
 
   useEffect(() => {
     return () => {
-      timeoutIds.map(id => clearTimeout(id));
-      timeoutIds = [];
+      timeoutIdsRef.current.map(id => clearTimeout(id));
+      timeoutIdsRef.current = [];
     };
   }, []);
 
   // let timeoutIds: ReturnType<typeof setTimeout>[] = [];
-  let timeoutIds: number[] = [];
 
   const wait = async (ms: number): Promise<void> => {
     return new Promise(resolve => {
-      timeoutIds.push(setTimeout(resolve, ms));
+      timeoutIdsRef.current.push(setTimeout(resolve, ms));
     });
   };
 
@@ -59,7 +59,7 @@ export function useVaryingName(
     await wait(1e3);
     await addChar(name1);
 
-    timeoutIds = [];
+    timeoutIdsRef.current = [];
 
     return oneround;
   };
