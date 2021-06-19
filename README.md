@@ -21,7 +21,7 @@ Currently deployed on vercel with one click.
 ## Todos
 
 - [ ] Hydrate the `/techstack` route with real content and styling
-- [ ] CI/CD preparation - setup action or circleCI to build and push image to docker hub on commit
+- [x] CI/CD preparation - setup github actions to build and push image to docker hub on commit
   - [ ] setup nginx reverse proxy and caching for next app, in case I need custom deployment later (out of scope of this repo tho)
 - [ ] Un-sticky header in mobile landscape mode for better user experience
 - [ ] Custom favicon, google web font

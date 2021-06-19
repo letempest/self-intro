@@ -26,9 +26,8 @@ export function useVaryingName(
   const oneround = async () => {
     const addChar = async (spanStr: string) => {
       const arr = spanStr.split('');
-      const ms = spanStr === name1 ? 100 : 200;
       for (const char of arr) {
-        await wait(ms);
+        await wait(100);
         setMyname(prev => {
           setName(prev + char);
           return prev + char;
@@ -37,10 +36,9 @@ export function useVaryingName(
     };
 
     const removeChar = async (curName: string) => {
-      const ms = curName === name1 ? 100 : 200;
       for (let i = 1; i <= curName.length; i++) {
         // say i = 1, silce(0, -1) means slice from 0 to second to last element (last one not included)
-        await wait(ms);
+        await wait(100);
         const slicedStr = curName.slice(0, -i);
         setMyname(slicedStr);
         setName(slicedStr);
@@ -67,7 +65,7 @@ export function useVaryingName(
   const loopWrapper = async () =>
     (async function loop() {
       // await wait(1e3);  e.g. 1e3, interval between every round, uncomment to apply
-      // every round cycle takes 9100ms
+      // every round cycle takes 9000ms
       await oneround();
       loop();
     })();
