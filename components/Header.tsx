@@ -26,8 +26,8 @@ const Header = () => {
 
             if (mounted && isActive) {
               resolvedTheme === 'light'
-                ? classList.push('text-lime-400')
-                : classList.push('dark:text-purple-500');
+                ? classList.push('text-orange-300 font-semibold')
+                : classList.push('dark:text-amber-300 font-semibold');
             }
             const className = classList.join(' ');
 
