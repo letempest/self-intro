@@ -22,7 +22,7 @@ const navigation: Attrs[] = [
 
 function Footer() {
   return (
-    <footer className="pt-12 pb-10 px-4 sm:px-6 lg:px-8">
+    <footer className="pt-16 pb-10 px-4 sm:px-6 lg:px-8">
       <hr className="w-full max-w-3xl mx-auto py-3 border-1 border-gray-300 dark:border-gray-500" />
       <div className="max-w-7xl mx-auto md:flex md:items-center md:justify-center">
         <div className="hidden md:flex justify-center space-x-6 md:order-2">

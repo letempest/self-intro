@@ -117,9 +117,9 @@ export default function Home() {
         but decided to switch my career into a developer role to actually create
         something awesome. I'm curious about trending technologies and also a
         quick learner, which combining together means I am capable of working
-        with React,&nbsp;GraphQL&nbsp;and&nbsp;TypeScript; possess sufficient
-        knowledge of Docker & Kubernetes; and last but not least, I'm a fan of
-        microservices architecture.
+        with React, GraphQL and TypeScript; possess sufficient knowledge of
+        Docker & Kubernetes; and last but not least, I'm a fan of microservices
+        architecture.
       </p>
       <hr className="border-t-1 border-coolGray-400 my-8" />
       <div className="flex flex-col items-center text-center pb-12 md:pb-20 px-4">
