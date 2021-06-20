@@ -1,19 +1,24 @@
+import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { useWindowScroll } from 'hooks';
 
 export function ScrollToTop() {
-  const scrollY = useWindowScroll();
+  const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
+  const scrollY = useWindowScroll();
+
+  useEffect(() => setMounted(true), []);
 
   const scrollHandler = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const className = `fixed bottom-8 right-8 md:right-12 lg:right-20 xl:right-44 w-8 h-8 bg-amber-300 dark:bg-gray-300 rounded-full focus:outline-none z-20 opacity-90 ${
+  const className = `${
     scrollY > 200 ? 'block' : 'hidden'
-  }`;
+  } fixed bottom-8 right-8 md:right-12 lg:right-20 xl:right-44 w-8 h-8 bg-amber-300 hover:bg-amber-400 dark:bg-gray-300 dark:hover:bg-gray-400 rounded-full focus:outline-none z-20 opacity-90`;
+  const strokeColor = resolvedTheme === 'light' ? '#1e9465' : '#253545';
 
-  return (
+  return mounted ? (
     <button
       className={className}
       aria-label="Scroll to top"
@@ -24,7 +29,7 @@ export function ScrollToTop() {
         width="24"
         height="24"
         viewBox="0 0 16 16"
-        stroke={resolvedTheme === 'dark' ? '#253545' : '#1e9465'}
+        stroke={strokeColor}
         className="mx-auto"
         aria-hidden="true"
       >
@@ -35,5 +40,5 @@ export function ScrollToTop() {
         ></path>
       </svg>
     </button>
-  );
+  ) : null;
 }
