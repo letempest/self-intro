@@ -12,6 +12,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "framer-motion": "^5.0.2",
     "next": "^11.0.0",
     "next-themes": "0.0.14",
     "react": "^17.0.2",

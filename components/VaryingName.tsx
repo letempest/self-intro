@@ -15,5 +15,9 @@ export function VaryingName({ name1, name2 }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <span className="inline-block tracking-wide">{myname}</span>;
+  return (
+    <span className="inline-block tracking-wide dark:text-orange-300">
+      {myname}
+    </span>
+  );
 }

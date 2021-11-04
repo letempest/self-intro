@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 import { VaryingName } from '../components';
 
@@ -97,10 +98,17 @@ export default function Home() {
 
   return (
     <div className="mx-6 md:mx-12 lg:mx-6 text-sm md:text-base">
-      <h1 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+      <h1 className="flex items-center h-12 text-2xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
         <span>Hi, I'm</span>
         <span>&ensp;</span>
         <VaryingName name1="Liao Jianjian" name2="Jesse L" />
+        <motion.div
+          className="h-full text-teal-500 dark:text-red-500"
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ easings: 'linear', duration: 1, repeat: Infinity }}
+        >
+          |
+        </motion.div>
       </h1>
       <p className="py-2 lg:text-lg">
         I'm a developer, cyclist and sailor. You just found a slice of the
