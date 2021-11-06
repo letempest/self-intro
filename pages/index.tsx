@@ -13,6 +13,7 @@ interface ListProps {
   odd?: boolean;
   objectPosition?: string;
   className?: string;
+  priority?: boolean;
 }
 
 // not reusable at all, no need to refactor into its own component
@@ -36,15 +37,17 @@ const ListComponent = ({
     <li className="flex flex-col lg:flex-row items-center lg:items-start max-w-[400px] lg:max-w-none lg:min-h-[220px]">
       <div className="absolute left-1/2 ml-[-64px] w-32 h-32 lg:order-last z-20">
         {/* ml-[-vpx], where v should be [w-32] * 4 / 2, to ensure the image is centered */}
-        <Image
-          src={imgSrc}
-          layout="fill"
-          objectFit="cover"
-          objectPosition={objectPosition}
-          alt={imgAlt}
-          aria-hidden="true"
-          className={className}
-        />
+        <div className="relative w-full h-full">
+          <Image
+            src={imgSrc}
+            layout="fill"
+            objectFit="cover"
+            objectPosition={objectPosition}
+            alt={imgAlt}
+            aria-hidden="true"
+            className={className}
+          />
+        </div>
       </div>
       <div className={sidedClassName}>
         <h4 className="mt-3 font-bold">{timespan}</h4>
@@ -62,7 +65,8 @@ export default function Home() {
       role: 'Undergraduate',
       desc: "I graduated with a bachalor's degree in <em>Mechanical Design, Manufacture & Automation</em>.",
       imgSrc: '/static/images/home/hnu.jpg',
-      imgAlt: 'undergraduate - hunan university'
+      imgAlt: 'undergraduate - hunan university',
+      priority: true
     },
     {
       timespan: '2014 - 2016',
@@ -70,7 +74,8 @@ export default function Home() {
       desc: 'Took charge of various vehicle comonents performance test, e.g. physical / functional / durability test of brake system / chassis parts / rear-view mirrors&nbsp;etc.',
       imgSrc: '/static/images/home/machine.jpg',
       imgAlt: 'First job as a vehicle testing engineer',
-      objectPosition: 'left bottom'
+      objectPosition: 'left bottom',
+      priority: true
     },
     {
       timespan: '2016 - 2017',
@@ -92,23 +97,23 @@ export default function Home() {
       role: 'Learning web development',
       desc: 'Been continuously learning about modern fullstack development workflow, got my hands dirty by writing React, Node.js and GraphQL&nbsp;code.',
       imgSrc: '/static/images/home/coding.jpg',
-      imgAlt: 'next web developer to change the world'
+      imgAlt: 'next web developer who change the world'
     }
   ];
 
   return (
     <div className="mx-6 md:mx-12 lg:mx-6 text-sm md:text-base">
-      <h1 className="flex items-center h-12 text-2xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+      <h1 className="flex items-end h-12 text-2xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
         <span>Hi, I'm</span>
         <span>&ensp;</span>
         <VaryingName name1="Liao Jianjian" name2="Jesse L" />
-        <motion.div
-          className="h-full text-teal-500 dark:text-red-500"
+        <motion.span
+          className="pb-1 md:pb-[0.325rem] text-teal-500 dark:text-red-500"
           animate={{ opacity: [0, 1, 0] }}
           transition={{ easings: 'linear', duration: 1, repeat: Infinity }}
         >
           |
-        </motion.div>
+        </motion.span>
       </h1>
       <p className="py-2 lg:text-lg">
         I'm a developer, cyclist and sailor. You just found a slice of the

@@ -6,7 +6,7 @@ export function useVaryingName(
   setName: (_prev: string) => void
 ) {
   const [_myname, setMyname] = useState(name1);
-  const timeoutIdsRef = useRef<number[]>([]);
+  const timeoutIdsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
     return () => {
